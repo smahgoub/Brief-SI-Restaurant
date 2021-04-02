@@ -26,7 +26,6 @@ public class Tables {
 
         Statement statement = connection.createStatement();
         ResultSet resultat = statement.executeQuery("SELECT num_table from tables");
-        System.out.println(resultat);
 
         // Je boucle pour afficher tous les lignes du resultat
         while (resultat.next()) {

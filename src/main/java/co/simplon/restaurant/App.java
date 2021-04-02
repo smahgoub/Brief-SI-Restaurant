@@ -111,12 +111,13 @@ public class App {
         Tables.afficheTables(connection);
         int idTable = sc.nextInt();
 
+
         // J'insers dans la table Facture les données saisies pour serveurs et tables
         Statement ordreSQL = connection.createStatement();
         ordreSQL.execute("INSERT INTO facture (serveurs_idx,tables_idx) VALUES ('" + idServeur + "','" + idTable + "')", Statement.RETURN_GENERATED_KEYS);
         ResultSet cleFact = ordreSQL.getGeneratedKeys();
 
-        int idFact=0;
+        int idFact = 0;
 
         while (cleFact.next()) {
             idFact = cleFact.getInt(1);
@@ -136,9 +137,7 @@ public class App {
                 sc.nextLine();
 
                 // J'insers l'id facture, l'id plat et la quatite  dans facture_ligne
-                String sql = "INSERT INTO facture_ligne (facture_idx,plat_idx,nb_plat) VALUES (" + idFact + "," + idPlat + " ," + quantite + ")";
-
-                ordreSQL.execute(sql);
+                ordreSQL.execute("INSERT INTO facture_ligne (facture_idx,plat_idx,nb_plat) VALUES (" + idFact + "," + idPlat + " ," + quantite + ")");
             }
         }
         while (idPlat > 0);
